@@ -7,3 +7,8 @@ export const getDate = (date) => {
     const dd = String(value.getDate()).padStart(2, "0")
     return `${yyyy}.${mm}.${dd}`
 }
+
+export const getStroageUrl =() => {
+
+    return `https://storage.cloud.google.com/${url}`
+}

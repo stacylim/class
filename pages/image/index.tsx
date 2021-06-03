@@ -47,12 +47,53 @@ const ImagePage = () => {
             return;
         }
 
+        //await, for문 은 하나씩 보내는 방식 이거 대신에 promise.all 한꺼번에 보내는 방식
+        const start = performance.now();
+        await Promise.all(
+            new Array(5)
+                .fill(1) 
+                .map( ()=> uploadFileMutation({ 
+                variables: { file: file } }))
+            );
+    }    
 
-    const result = await uploadFileMutation({
-            variables: { file: file },
-        });
-        console.log(result);
-    };
+
+    
+
+    
+    // [
+    //     uploadFileMutation({ variables: { file: file} }),
+    //     uploadFileMutation({ variables: { file: file} }),
+    //     uploadFileMutation({ variables: { file: file} }),
+    //     uploadFileMutation({ variables: { file: file} }),
+    //     uploadFileMutation({ variables: { file: file} }),
+    // ]
+    // for (let i =0; i<5; i++) {
+     // }
+    //하나하나 어웨이트를 거는게 아니라 
+    // await uploadFileMutation({
+    //     variables: {file: file},
+    // });
+    // await uploadFileMutation({
+    //     variables: {file: file},
+    // });
+    // await uploadFileMutation({
+    //     variables: {file: file},
+    // });
+    // await uploadFileMutation({
+    //     variables: {file: file},
+    // });
+    // await uploadFileMutation({
+    //     variables: {file: file},
+    // });
+
+    //const result = 
+
+
+    // const end = new Date().getTime();
+    // console.log(end = start);
+    
+  
 
     const onClickImage = () => {
         fileRef.current.click();
