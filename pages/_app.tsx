@@ -1,32 +1,51 @@
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  ApolloLink,
+} from "@apollo/client";
 
+import { createUploadLink } from "apollo-upload-client";
+import GlobalStyles from "../src/commons/styles/globalStyles";
+import Layout from "../src/components/commons/layout";
+import { createContext, useState } from "react";
+import Link from "next/link";
 
-import {ApolloClient, ApolloProvider, InMemoryCache, ApolloLink} from '@apollo/client'
+export const GlobalContext = createContext({
+  accessToken: "",
+  setAccessToken: (_: any) => {},
 
-import {createUploadLink} from 'apollo-upload-client'
+  //있는데 안 쓰는 데이터 _ 언더바처리
+});
+
 function MyApp({ Component, pageProps }) {
+  const [accessToken, setAccessToken] = useState("");
 
-  const uploadLink =  createUploadLink({
-    uri:"http://backend.codebootcamp.co.kr/graphql"
+  const uploadLink = createUploadLink({
+    uri: "http://backend.codebootcamp.co.kr/graphql",
+    headers: {
+      authorization: "Bearer ${accessToken}",
+    },
   });
 
-  
-  const client = new ApolloClient ({
+  const client = new ApolloClient({
     // uri: "http://example.codebootcamp.co.kr/graphql",
-    
+
     link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
 
-  return(
-    <ApolloProvider client={client}>
-     
-        
- 
-      <Component {...pageProps} />
-      
-    </ApolloProvider>
-
-  ); 
+  return (
+    <GlobalContext.Provider value={{ accessToken, setAccessToken }}>
+      {/* <Link href={}>버튼클릭</Link> */}
+      <ApolloProvider client={client}>
+        <Layout>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
+  );
 }
 
 export default MyApp;
