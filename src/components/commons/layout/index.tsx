@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 import { useRouter } from "next/router";
-import LayoutFooter from "./footer/LayoutFooter.container";
+// import LayoutFooter from "./footer/LayoutFooter.container";
 import LayoutHeader from "./header/LayoutHeader.container";
-import LayoutNavigation from "./navigation/LayoutNavigation.container";
+// import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import React from "react";
 import { Wrapper, Body } from "./Layout.styles";
 // export const Wrapper = styled.div`
@@ -35,9 +35,9 @@ const Layout = ({ children }) => {
     <LayoutContext.Provider value={value}>
       <Wrapper>
         <LayoutHeader test={test} />
-        {isNavigation && <LayoutNavigation />}
+        {/* {isNavigation && <LayoutNavigation />} */}
         <Body>{children}</Body>
-        <LayoutFooter />
+        {/* <LayoutFooter /> */}
       </Wrapper>
     </LayoutContext.Provider>
   );

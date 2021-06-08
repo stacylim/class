@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { LayoutContext } from "../index";
+import Layout, { LayoutContext } from "../index";
 const LayoutHeaderUI = () => {
-  const { text } = useContext(LayoutContext);
+  const { test } = useContext(LayoutContext);
   useContext(Layout);
 
   return <div>헤더영역:{test}</div>;

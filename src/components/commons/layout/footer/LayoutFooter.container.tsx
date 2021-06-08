@@ -1,5 +1,5 @@
-import LayourFooterUI from "../LayoutFooter.presenter"
+import LayourFooterUI from "../LayoutFooter.presenter";
 
-const LayoutFooter = () => {
-    returns<LayoutFooterUI
-}
+export const LayoutFooter = () => {
+  return <LayoutFooterUI />;
+};

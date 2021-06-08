@@ -1,6 +1,6 @@
 import { Body, Footer, Header, Wrapper}
 
-const LayoutFooterUI = () => {
+export const LayoutFooterUI() {
 
     return (
         <div>푸터영역</div>

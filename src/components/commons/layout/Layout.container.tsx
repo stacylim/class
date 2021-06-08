@@ -1,5 +1,5 @@
 import LayoutUI from "./Layout.presenter"
-const Layout ({children}) => {
+const Layout ({ children }) => {
     return <LayoutUI children={children}
 }
 
