@@ -85,7 +85,7 @@ const BoardListUI = () => {
                 <Date>작성일</Date>
             </RowHeaderWrapper>
             <div style={{ height:300, overflow:'auto'}}>
-            <InfiniteScroll
+            
                 pageStart={0}
                 loadMore={() => { const temp=fetchMore({
                     variables:{
@@ -111,7 +111,7 @@ const BoardListUI = () => {
                     <button id={board.number} onClick={onClickDelete}>삭제</button>
                 </RowWrapper>
 
-            </InfiniteScroll>
+          
             </div>
             {data?.fetchBoards.map((board, index) => (
                 <>

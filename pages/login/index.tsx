@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useApolloClient } from "@apollo/client";
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "../_app";
@@ -11,6 +11,18 @@ const LOGIN_USER_EXAMPLE = gql`
   }
 `;
 
+const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      name
+      userPoint {
+        amount
+      }
+    }
+  }
+`;
+
 const LoginPage = () => {
   const router = useRouter();
   const { setAccessToken } = useContext(GlobalContext);
@@ -18,6 +30,8 @@ const LoginPage = () => {
   const [loginUserExample] = useMutation(LOGIN_USER_EXAMPLE);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+
+  const client = useApolloClient();
 
   const onChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -35,8 +49,15 @@ const LoginPage = () => {
         variables: { email, password },
       });
       setAccessToken(data?.loginUserExample.accessToken);
-      router.push("/tokentest/tokentest2");
-      console.log(data?.loginUserExample.accessToken);
+      const userInfo = await client.query({
+        query: FETCH_USER_LOGGED_IN,
+        context: {
+          headers: { authorization: data?.loginUserExample.accessToken },
+        },
+      });
+      userInfo;
+      // router.push("/tokentest/tokentest2");
+      // console.log(data?.loginUserExample.accessToken);
     } catch (error) {
       alert(error.message);
     }
