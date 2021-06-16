@@ -32,6 +32,7 @@ export const GlobalContext = createContext({
   accessToken: "",
   setAccessToken: (_: any) => {},
   setUserInfo: (_: string) => {},
+  userInfo : {};
 
   //있는데 안 쓰는 데이터 _ 언더바처리
   //여기에 넣어주면 어느 페이지에서든 정보를 뽑아서 쓸수있다.

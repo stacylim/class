@@ -55,7 +55,7 @@ const LoginPage = () => {
           headers: { authorization: data?.loginUserExample.accessToken },
         },
       });
-      userInfo;
+      setUserInfo(userInfo.data.fetchUserLoggedIn);
       // router.push("/tokentest/tokentest2");
       // console.log(data?.loginUserExample.accessToken);
     } catch (error) {
