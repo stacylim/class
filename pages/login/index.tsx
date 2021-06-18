@@ -49,13 +49,16 @@ const LoginPage = () => {
         variables: { email, password },
       });
       setAccessToken(data?.loginUserExample.accessToken);
+
       const userInfo = await client.query({
         query: FETCH_USER_LOGGED_IN,
         context: {
           headers: { authorization: data?.loginUserExample.accessToken },
         },
       });
+
       setUserInfo(userInfo.data.fetchUserLoggedIn);
+
       // router.push("/tokentest/tokentest2");
       // console.log(data?.loginUserExample.accessToken);
     } catch (error) {

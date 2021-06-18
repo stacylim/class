@@ -16,26 +16,26 @@ import Operation from "antd/lib/transfer/operation";
 import Head from "next/head"; //이 안에 코드를 작성하면, 실제 html 안에서 헤드로 만들어준다.
 
 //1
-const { data } = useQuery(FETCH_USER); //컴포넌트가 그려질때 자동실행
+// const { data } = useQuery(FETCH_USER); //컴포넌트가 그려질때 자동실행
 
-//2
-const [aaa, { data }] = useLazyQuery(FETCH_USER); //내가 요청하고 싶을때 aaa() 이걸로 실행
-aaa();
+// //2
+// const [aaa, { data }] = useLazyQuery(FETCH_USER); //내가 요청하고 싶을때 aaa() 이걸로 실행
+// aaa();
 
-//3
-const client = useApolloClient(); //내가 요청하고 싶을때
+// // //3
+// const client = useApolloClient(); //내가 요청하고 싶을때
 
-const result = await client.query({ query: FETCH_USER }); // 이걸로 실행
-result.data.fetchUser; //유저정보 들어옴
+// const result = await client.query({ query: FETCH_USER }); // 이걸로 실행
+// result.data.fetchUser; //유저정보 들어옴
 
 export const GlobalContext = createContext({
   accessToken: "",
   setAccessToken: (_: any) => {},
   setUserInfo: (_: string) => {},
-  userInfo : {};
+  userInfo: {},
 
-  //있는데 안 쓰는 데이터 _ 언더바처리
-  //여기에 넣어주면 어느 페이지에서든 정보를 뽑아서 쓸수있다.
+  //   //있는데 안 쓰는 데이터 _ 언더바처리
+  //   //여기에 넣어주면 어느 페이지에서든 정보를 뽑아서 쓸수있다.
 });
 
 function MyApp({ Component, pageProps }) {
@@ -114,7 +114,9 @@ function MyApp({ Component, pageProps }) {
           src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
         ></script>
       </Head>
-      <GlobalContext.Provider value={{ accessToken, setAccessToken }}>
+      <GlobalContext.Provider
+        value={{ accessToken, setAccessToken, setUserInfo, userInfo }}
+      >
         {/* <Link href={}>버튼클릭</Link> */}
         <ApolloProvider client={client}>
           <Layout>

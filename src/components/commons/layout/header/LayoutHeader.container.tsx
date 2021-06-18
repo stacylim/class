@@ -1,4 +1,4 @@
-import LayoutHeaderUI from "./LayoutHeader..presenter";
+import LayoutHeaderUI from "./LayoutHeader.presenter";
 
 const LayoutHeader = () => {
   return <LayoutHeaderUI />;
