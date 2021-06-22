@@ -30,7 +30,7 @@ import Head from "next/head"; //이 안에 코드를 작성하면, 실제 html �
 
 export const GlobalContext = createContext({
   accessToken: "",
-  setAccessToken: (_: any) => {},
+  setAccessToken: (_: string) => {},
   setUserInfo: (_: string) => {},
   userInfo: {},
 
@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }) {
 
   //Apollo 세팅
   const uploadLink = createUploadLink({
-    uri: "http://backend.codebootcamp/graphql",
+    uri: "https://backend.codebootcamp/graphql",
     headers: { authorization: "Bearer ${accessToken}" },
     credentials: "include",
   });
