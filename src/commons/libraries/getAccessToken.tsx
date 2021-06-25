@@ -1,5 +1,6 @@
+import axios from "axios"
 
-
+const getAccessToken = async ({ })
 
            const response = axios.post(
               "https://backend.codebootcamp.co.kr/graphql"
@@ -10,8 +11,8 @@
                restoreAccessToken{
                 accessToken
                }
-              }
-             `
+            }
+             `}
              {
                 headers:{"Content-Type": 'application/json'},
                 withCredentials: true

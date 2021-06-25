@@ -7,7 +7,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
   //ssr = 서버사이드 렌더링
-  //브라우저가 없는 서버환경이면, ReactQull을 그려라 라는 뜻
+  //브라우저가 없는 서버환경이면, ReactQuill을 그려라 라는 뜻
 });
 
 const CREATE_BOARD = gql`
