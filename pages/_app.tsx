@@ -13,7 +13,8 @@ import Link from "next/link";
 import { GraphQLError } from "graphql";
 import axios from "axios";
 import Operation from "antd/lib/transfer/operation";
-import Head from "next/head"; //이 안에 코드를 작성하면, 실제 html 안에서 헤드로 만들어준다.
+import Head from "next/head";
+//이 안에 코드를 작성하면, next js 에서 실제 html 안에서 헤드로 만들어준다.
 
 //1
 // const { data } = useQuery(FETCH_USER); //컴포넌트가 그려질때 자동실행
@@ -102,30 +103,17 @@ function MyApp({ Component, pageProps }) {
   });
 
   return (
-    <>
-      <Head>
-        <script
-          type="text/javascript"
-          src="https://code.jquery.com/jquery-1.12.4.min.js"
-        ></script>
-
-        <script
-          type="text/javascript"
-          src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
-        ></script>
-      </Head>
-      <GlobalContext.Provider
-        value={{ accessToken, setAccessToken, setUserInfo, userInfo }}
-      >
-        {/* <Link href={}>버튼클릭</Link> */}
-        <ApolloProvider client={client}>
-          <Layout>
-            <GlobalStyles />
-            <Component {...pageProps} />
-          </Layout>
-        </ApolloProvider>
-      </GlobalContext.Provider>
-    </>
+    <GlobalContext.Provider
+      value={{ accessToken, setAccessToken, setUserInfo, userInfo }}
+    >
+      {/* <Link href={}>버튼클릭</Link> */}
+      <ApolloProvider client={client}>
+        <Layout>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
   );
 }
 
