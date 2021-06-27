@@ -43,11 +43,16 @@ const PaymentPage = () => {
         if (rsp.success) {
           await createPoint({
             variables: {
-              impUid:rsp.imp_uid;
-            }
+              impUid: rsp.imp_uid,
+            },
+            context: {
+              headers: {
+                authorization:
+                  "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGJkOGE5MTYyNzA2MjAwMjkxMTA4MmYiLCJwZXJtaXNzaW9uIjowLCJpYXQiOjE2MjQ3NzQ5NTEsImV4cCI6MTYyNDc3NDk1Niwic3ViIjoiYWNjZXNzVG9rZW4ifQ.HQrGjzLYKQOGeEfpx49Ssk4Sp-XWU2b1IDd2VJDnhk7c0ZnUaqAdvqn62q7moFInz_4Laf9aAWQoIpXSC9LVEA",
+              },
+            },
           });
-        alert("결제에 성공했습니다.");
-          
+          alert("결제에 성공했습니다.");
         } else {
           alert("결제에 실패했습니다.");
         }
